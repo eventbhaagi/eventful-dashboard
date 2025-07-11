@@ -9,9 +9,9 @@ import {
   IconUserCircle,
 } from "@tabler/icons-react";
 import AccountTab from "@/app/components/account-settings/AccountTab";
-// import NotificationTab from "@/app/components/theme-pages/account-settings/NotificationTab";
-// import BillsTabs from "@/app/components/theme-pages/account-settings/BillsTab";
-// import SecurityTab from "@/app/components/theme-pages/account-settings/SecurityTab";
+import NotificationTab from "@/app/components/account-settings/NotificationTab";
+import BillsTab from "@/app/components/account-settings/BillsTab";
+import SecurityTab from "@/app/components/account-settings/SecurityTab";
 
 const AccountSettingIndex = () => {
   return (
@@ -27,21 +27,21 @@ const AccountSettingIndex = () => {
               <AccountTab />
             </div>
           </Tabs.Item>
-          {/* <Tabs.Item title="Notification" icon={() => <IconBell size={20} />}>
+          <Tabs.Item title="Notification" icon={() => <IconBell size={20} />}>
             <div className="p-6">
               <NotificationTab />
             </div>
           </Tabs.Item>
           <Tabs.Item title="Bills" icon={() => <IconArticle size={20} />}>
             <div className="p-6">
-              <BillsTabs />
+              <BillsTab />
             </div>
           </Tabs.Item>
           <Tabs.Item title="Security" icon={() => <IconLock size={20} />}>
             <div className="p-6">
               <SecurityTab />
             </div>
-          </Tabs.Item> */}
+          </Tabs.Item>
         </Tabs>
       </CardBox>
     </>
