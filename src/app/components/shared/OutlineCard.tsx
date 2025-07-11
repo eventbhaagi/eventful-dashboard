@@ -10,9 +10,13 @@ interface MyAppProps {
   className?: string;
 }
 const OutlineCard: React.FC<MyAppProps> = ({ children, className }) => {
-  const { activeMode, isCardShadow,isBorderRadius } = useContext(CustomizerContext);
+  const context = useContext(CustomizerContext);
+
+  // Provide fallback values if context is undefined (during SSR)
+  const { activeMode = 'light', isCardShadow = false, isBorderRadius = 0 } = context || {};
+
   return (
-    <Card className={`card ${className} ${isCardShadow ? ' border border-ld' : ' border border-ld'} `}  style={{
+    <Card className={`card ${className} ${isCardShadow ? ' border border-ld' : ' border border-ld'} `} style={{
       borderRadius: `${isBorderRadius}px`,
     }}>{children}</Card>
   );

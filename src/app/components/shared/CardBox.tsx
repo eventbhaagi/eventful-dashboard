@@ -11,7 +11,11 @@ interface MyAppProps {
   className?: string;
 }
 const CardBox: React.FC<MyAppProps> = ({ children, className }) => {
-  const { activeMode, isCardShadow, isBorderRadius } = useContext(CustomizerContext);
+  const context = useContext(CustomizerContext);
+
+  // Provide fallback values if context is undefined (during SSR)
+  const { activeMode = 'light', isCardShadow = false, isBorderRadius = 0 } = context || {};
+
   return (
     <Card className={`card ${className} ${isCardShadow ? ' shadow-md dark:shadow-none' : 'shadow-none border border-ld'} `}
       style={{
