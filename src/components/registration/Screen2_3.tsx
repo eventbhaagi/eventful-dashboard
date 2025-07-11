@@ -68,12 +68,10 @@ type Screen2_3FormData = z.infer<typeof screen2_3Schema>;
 interface Screen2_3Props {
     onNext: (data: Screen2_3FormData) => void;
     onBack: () => void;
-    screen2_2Data?: any;
 }
 
-export default function Screen2_3({ onNext, onBack, screen2_2Data }: Screen2_3Props) {
+export default function Screen2_3({ onNext, onBack }: Screen2_3Props) {
     const [isLoading, setIsLoading] = useState(false);
-    const [availableLanguages, setAvailableLanguages] = useState<string[]>([]);
 
     const {
         register,
@@ -282,7 +280,7 @@ export default function Screen2_3({ onNext, onBack, screen2_2Data }: Screen2_3Pr
                         <Label htmlFor="starValue">Where will you position your Star Value for LIVE Stage?</Label>
                         <Select
                             value={watch("starValue")}
-                            onValueChange={(value) => setValue("starValue", value as any)}
+                            onValueChange={(value) => setValue("starValue", value as Screen2_3FormData["starValue"])}
                         >
                             <SelectTrigger>
                                 <SelectValue />
@@ -316,7 +314,7 @@ export default function Screen2_3({ onNext, onBack, screen2_2Data }: Screen2_3Pr
                         </Label>
                     </div>
                     <p className="text-sm text-gray-600">
-                        Skip next step if answer is 'No'
+                        Skip next step if answer is &apos;No&apos;
                     </p>
 
                     {hasPersonalManager && (
@@ -383,7 +381,7 @@ export default function Screen2_3({ onNext, onBack, screen2_2Data }: Screen2_3Pr
                         </Label>
                     </div>
                     <p className="text-sm text-gray-600">
-                        Skip next step if answer is 'No'
+                        Skip next step if answer is &apos;No&apos;
                     </p>
 
                     {hasAgencyManagement && (
@@ -451,7 +449,7 @@ export default function Screen2_3({ onNext, onBack, screen2_2Data }: Screen2_3Pr
                         <Label htmlFor="quoteResponsibility">Who will Quote for your Performances?</Label>
                         <Select
                             value={watch("quoteResponsibility")}
-                            onValueChange={(value) => setValue("quoteResponsibility", value as any)}
+                            onValueChange={(value) => setValue("quoteResponsibility", value as Screen2_3FormData["quoteResponsibility"])}
                         >
                             <SelectTrigger>
                                 <SelectValue />

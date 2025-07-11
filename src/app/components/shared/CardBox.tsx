@@ -10,7 +10,7 @@ interface MyAppProps {
 
 const CardBox: React.FC<MyAppProps> = ({ children, className }) => {
     const context = useContext(CustomizerContext);
-    const { activeMode = 'light', isCardShadow = true, isBorderRadius = 8 } = context || {};
+    const { isCardShadow = true, isBorderRadius = 8 } = context || {};
 
     return (
         <div

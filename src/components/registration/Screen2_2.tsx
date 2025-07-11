@@ -22,19 +22,17 @@ type Screen2_2FormData = z.infer<typeof screen2_2Schema>;
 interface Screen2_2Props {
     onNext: (data: Screen2_2FormData) => void;
     onBack: () => void;
-    screen2_1Data?: any; // Data from previous screen for scraping
 }
 
-export default function Screen2_2({ onNext, onBack, screen2_1Data }: Screen2_2Props) {
+export default function Screen2_2({ onNext, onBack }: Screen2_2Props) {
     const [isLoading, setIsLoading] = useState(false);
     const [isScraping, setIsScraping] = useState(false);
-    const [scrapedInfo, setScrapedInfo] = useState<any>(null);
+    const [scrapedInfo, setScrapedInfo] = useState<Screen2_2FormData | null>(null);
 
     const {
         register,
         handleSubmit,
         formState: { errors },
-        watch,
         setValue,
     } = useForm<Screen2_2FormData>({
         resolver: zodResolver(screen2_2Schema),
@@ -58,7 +56,7 @@ export default function Screen2_2({ onNext, onBack, screen2_1Data }: Screen2_2Pr
                 screenName: "ArtistName123",
                 profilePicture: "https://example.com/profile.jpg",
                 profileBios: "Professional performing artist with 10+ years of experience in live stage performances. Specializing in contemporary dance and theatrical arts. Winner of multiple awards and recognized for innovative performances across various venues.",
-                additionalInfo: "Found on: YouTube, Instagram, Facebook\nFollowers: 50K+\nGenre: Contemporary Dance\nLocation: Mumbai, India"
+                scrapedData: "Found on: YouTube, Instagram, Facebook\nFollowers: 50K+\nGenre: Contemporary Dance\nLocation: Mumbai, India"
             };
 
             setScrapedInfo(mockScrapedData);
@@ -67,7 +65,7 @@ export default function Screen2_2({ onNext, onBack, screen2_1Data }: Screen2_2Pr
             setValue("screenName", mockScrapedData.screenName);
             setValue("profilePicture", mockScrapedData.profilePicture);
             setValue("profileBios", mockScrapedData.profileBios);
-            setValue("scrapedData", mockScrapedData.additionalInfo);
+            setValue("scrapedData", mockScrapedData.scrapedData);
 
         } catch (error) {
             console.error("Error scraping data:", error);

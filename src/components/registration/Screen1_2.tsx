@@ -36,10 +36,9 @@ type Screen1_2FormData = z.infer<typeof screen1_2Schema>;
 interface Screen1_2Props {
     onNext: (data: Screen1_2FormData) => void;
     onBack: () => void;
-    screen1_1Data?: any; // Data from previous screen for autofill
 }
 
-export default function Screen1_2({ onNext, onBack, screen1_1Data }: Screen1_2Props) {
+export default function Screen1_2({ onNext, onBack }: Screen1_2Props) {
     const [isLoading, setIsLoading] = useState(false);
 
     const {
@@ -125,7 +124,7 @@ export default function Screen1_2({ onNext, onBack, screen1_1Data }: Screen1_2Pr
                 <p className="text-gray-600">Screen 1.2 - Personal Information</p>
             </div>
 
-            <form onSubmit={handleSubmit(onSubmit as any)} className="space-y-6">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 {/* Social Network IDs Section */}
                 <div className="space-y-4">
                     <div className="flex items-center space-x-2">
@@ -298,11 +297,11 @@ export default function Screen1_2({ onNext, onBack, screen1_1Data }: Screen1_2Pr
                             onCheckedChange={(checked) => setValue("isPerformingArtist", checked as boolean)}
                         />
                         <Label htmlFor="isPerformingArtist" className="text-lg font-medium">
-                            I'm a Performing Artist
+                            I&apos;m a Performing Artist
                         </Label>
                     </div>
                     <p className="text-sm text-gray-600">
-                        Skip this section if checkbox isn't 'checked'
+                        Skip this section if checkbox isn&apos;t &apos;checked&apos;
                     </p>
                 </div>
 

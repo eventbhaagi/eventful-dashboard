@@ -16,7 +16,7 @@ const config = {
 
 // Define the shape of the context state
 interface CustomizerContextState {
-    isMobileSidebar: number;
+    isMobileSidebar: boolean;
     setIsMobileSidebar: (id: boolean) => void;
     selectedIconId: number;
     setSelectedIconId: (id: number) => void;
@@ -36,10 +36,12 @@ interface CustomizerContextState {
     setIsBorderRadius: (radius: number) => void;
     isCollapse: string;
     setIsCollapse: (collapse: string) => void;
+    isLanguage: string;
+    setIsLanguage: (language: string) => void;
 }
 
 // Create the context with an initial value
-export const CustomizerContext = createContext<CustomizerContextState | any>(undefined);
+export const CustomizerContext = createContext<CustomizerContextState | undefined>(undefined);
 
 // Define the type for the children prop
 interface CustomizerContextProps {

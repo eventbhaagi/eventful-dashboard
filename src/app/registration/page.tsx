@@ -85,7 +85,6 @@ type RegistrationData = {
 export default function RegistrationPage() {
     const [currentScreen, setCurrentScreen] = useState<"1.1" | "1.2" | "2.1" | "2.2" | "2.3" | "complete">("1.1");
     const [registrationData, setRegistrationData] = useState<RegistrationData | null>(null);
-    const [isInvitedUser, setIsInvitedUser] = useState(false);
 
     const handleScreen1_1Complete = (data: Screen1_1Data) => {
         setRegistrationData(prev => ({
@@ -181,7 +180,7 @@ export default function RegistrationPage() {
                     </div>
                     <h1 className="text-3xl font-bold text-gray-900">Registration Complete!</h1>
                     <p className="text-gray-600">
-                        Thank you for registering. We've sent a confirmation to your email and WhatsApp.
+                        Thank you for registering. We&apos;ve sent a confirmation to your email and WhatsApp.
                     </p>
                     <div className="bg-gray-100 p-4 rounded-lg text-left">
                         <h3 className="font-semibold mb-2">Registration Summary:</h3>
@@ -213,7 +212,6 @@ export default function RegistrationPage() {
             {currentScreen === "1.1" && (
                 <Screen1_1
                     onNext={handleScreen1_1Complete}
-                    isInvitedUser={isInvitedUser}
                 />
             )}
 
@@ -221,7 +219,6 @@ export default function RegistrationPage() {
                 <Screen1_2
                     onNext={handleScreen1_2Complete}
                     onBack={handleBackToScreen1_1}
-                    screen1_1Data={registrationData?.screen1_1}
                 />
             )}
 
@@ -236,7 +233,6 @@ export default function RegistrationPage() {
                 <Screen2_2
                     onNext={handleScreen2_2Complete}
                     onBack={handleBackToScreen2_1}
-                    screen2_1Data={registrationData?.screen2_1}
                 />
             )}
 
@@ -244,7 +240,6 @@ export default function RegistrationPage() {
                 <Screen2_3
                     onNext={handleScreen2_3Complete}
                     onBack={handleBackToScreen2_2}
-                    screen2_2Data={registrationData?.screen2_2}
                 />
             )}
         </div>

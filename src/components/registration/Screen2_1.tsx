@@ -43,9 +43,7 @@ export default function Screen2_1({ onNext, onBack }: Screen2_1Props) {
     const {
         register,
         handleSubmit,
-        formState: { errors },
         watch,
-        setValue,
     } = useForm<Screen2_1FormData>({
         resolver: zodResolver(screen2_1Schema),
         defaultValues: {
