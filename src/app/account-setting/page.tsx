@@ -18,7 +18,7 @@ const BCrumb = [
 const Accountsettings = () => {
   return (
     <>
-      <BreadcrumbComp title="Account Setting" items={BCrumb} />
+      {/* <BreadcrumbComp title="Account Setting" items={BCrumb} /> */}
       <AccountSettingIndex />
     </>
   );
