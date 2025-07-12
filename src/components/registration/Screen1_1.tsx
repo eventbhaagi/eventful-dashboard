@@ -41,9 +41,10 @@ type Screen1_1FormData = z.infer<typeof screen1_1Schema>;
 
 interface Screen1_1Props {
     onNext: (data: Screen1_1FormData) => void;
+    onSkip: () => void;
 }
 
-export default function Screen1_1({ onNext }: Screen1_1Props) {
+export default function Screen1_1({ onNext, onSkip }: Screen1_1Props) {
     const [isLoading, setIsLoading] = useState(false);
     const [whatsappOTPSent, setWhatsappOTPSent] = useState(false);
     const [companyEmailOTPSent, setCompanyEmailOTPSent] = useState(false);
@@ -360,13 +361,24 @@ export default function Screen1_1({ onNext }: Screen1_1Props) {
                 </div>
 
                 {/* Navigation Button */}
-                <Button
-                    type="submit"
-                    disabled={isLoading || !whatsappOTPSent || !personalEmailOTPSent}
-                    className="w-full"
-                >
-                    {isLoading ? "Processing..." : "Continue to Screen 1.2"}
-                </Button>
+                <div className="flex space-x-4">
+                    <Button
+                        type="button"
+                        variant="outline"
+                        onClick={onSkip}
+                        className="flex-1"
+                    >
+                        Skip for Now
+                    </Button>
+
+                    <Button
+                        type="submit"
+                        disabled={isLoading || !whatsappOTPSent || !personalEmailOTPSent}
+                        className="flex-1"
+                    >
+                        {isLoading ? "Processing..." : "Continue to Screen 1.2"}
+                    </Button>
+                </div>
             </form>
         </div>
     );

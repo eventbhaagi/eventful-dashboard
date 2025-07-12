@@ -68,9 +68,10 @@ type Screen2_3FormData = z.infer<typeof screen2_3Schema>;
 interface Screen2_3Props {
     onNext: (data: Screen2_3FormData) => void;
     onBack: () => void;
+    onSkip: () => void;
 }
 
-export default function Screen2_3({ onNext, onBack }: Screen2_3Props) {
+export default function Screen2_3({ onNext, onBack, onSkip }: Screen2_3Props) {
     const [isLoading, setIsLoading] = useState(false);
 
     const {
@@ -481,11 +482,20 @@ export default function Screen2_3({ onNext, onBack }: Screen2_3Props) {
                     </Button>
 
                     <Button
+                        type="button"
+                        variant="outline"
+                        onClick={onSkip}
+                        className="flex-1"
+                    >
+                        Skip for Now
+                    </Button>
+
+                    <Button
                         type="submit"
                         disabled={isLoading}
                         className="flex-1"
                     >
-                        {isLoading ? "Processing..." : "Continue"}
+                        {isLoading ? "Processing..." : "Continue to Screen 2.4"}
                     </Button>
                 </div>
             </form>

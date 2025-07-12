@@ -34,9 +34,10 @@ type Screen2_1FormData = z.infer<typeof screen2_1Schema>;
 interface Screen2_1Props {
     onNext: (data: Screen2_1FormData) => void;
     onBack: () => void;
+    onSkip: () => void;
 }
 
-export default function Screen2_1({ onNext, onBack }: Screen2_1Props) {
+export default function Screen2_1({ onNext, onBack, onSkip }: Screen2_1Props) {
     const [isLoading, setIsLoading] = useState(false);
     const [validationResults, setValidationResults] = useState<Record<string, boolean>>({});
 
@@ -178,8 +179,17 @@ export default function Screen2_1({ onNext, onBack }: Screen2_1Props) {
                     </Button>
 
                     <Button
+                        type="button"
+                        variant="outline"
+                        onClick={onSkip}
+                        className="flex-1"
+                    >
+                        Skip for Now
+                    </Button>
+
+                    <Button
                         type="submit"
-                        disabled={isLoading || filledChannels < 2}
+                        disabled={isLoading}
                         className="flex-1"
                     >
                         {isLoading ? "Processing..." : "Continue to Screen 2.2"}

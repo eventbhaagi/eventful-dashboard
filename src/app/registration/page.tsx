@@ -6,6 +6,10 @@ import Screen1_2 from "@/components/registration/Screen1_2";
 import Screen2_1 from "@/components/registration/Screen2_1";
 import Screen2_2 from "@/components/registration/Screen2_2";
 import Screen2_3 from "@/components/registration/Screen2_3";
+import Screen2_4 from "@/components/registration/Screen2_4";
+import Screen2_5 from "@/components/registration/Screen2_5";
+import Screen2_6 from "@/components/registration/Screen2_6";
+import Screen2_7 from "@/components/registration/Screen2_7";
 
 type Screen1_1Data = {
     whatsappCountryCode: string;
@@ -74,16 +78,117 @@ type Screen2_3Data = {
     quoteResponsibility: "I will Quote Myself" | "My Personal Manager will Quote" | "My Artist Manager will Quote";
 };
 
+type Screen2_4Data = {
+    motivationalTalk?: string;
+    motivationalTalkPrice?: string;
+    panelistRole?: string;
+    panelistRolePrice?: string;
+    soloDanceSet?: string;
+    soloDanceSetPrice?: string;
+    ensembleShow?: string;
+    ensembleShowPrice?: string;
+    arenaTheatrical?: string;
+    arenaTheatricalPrice?: string;
+    segmentHosting?: string;
+    segmentHostingPrice?: string;
+    fullShowAnchoring?: string;
+    fullShowAnchoringPrice?: string;
+    runwayWalk?: string;
+    runwayWalkPrice?: string;
+    voiceover?: string;
+    voiceoverPrice?: string;
+};
+
+type Screen2_5Data = {
+    actTitle: string;
+    actPricing: string;
+    stageLength?: string;
+    stageDepth?: string;
+    stageHeight?: string;
+    ceilingHeight?: string;
+    actDuration: string;
+    durationUnit: "minutes" | "hours" | "days";
+    onStageCrewSize?: string;
+    backStageCrewSize?: string;
+    fohCrewSize?: string;
+    actReferenceVideoURL?: string;
+    actReferencePhotos?: string;
+};
+
+type Screen2_6Data = {
+    publicConcerts: boolean;
+    publicConcertsPercentage?: string;
+    publicConcertsType?: "premium" | "discount";
+    weddings: boolean;
+    weddingsPercentage?: string;
+    weddingsType?: "premium" | "discount";
+    corporateEvents: boolean;
+    corporateEventsPercentage?: string;
+    corporateEventsType?: "premium" | "discount";
+    governmentEvents: boolean;
+    governmentEventsPercentage?: string;
+    governmentEventsType?: "premium" | "discount";
+    collegeFest: boolean;
+    collegeFestPercentage?: string;
+    collegeFestType?: "premium" | "discount";
+    fundraisers: boolean;
+    fundraisersPercentage?: string;
+    fundraisersType?: "premium" | "discount";
+    awardCeremonies: boolean;
+    awardCeremoniesPercentage?: string;
+    awardCeremoniesType?: "premium" | "discount";
+    devotionalEvents: boolean;
+    devotionalEventsPercentage?: string;
+    devotionalEventsType?: "premium" | "discount";
+    internationalTours: boolean;
+    internationalToursPercentage?: string;
+    internationalToursType?: "premium" | "discount";
+    horecaGigs: boolean;
+    horecaGigsPercentage?: string;
+    horecaGigsType?: "premium" | "discount";
+};
+
+type Screen2_7Data = {
+    travelInterest: "domestic" | "international" | "notInterested";
+    performedCountries?: string[];
+    revenueShareCollab: boolean;
+    artistCollaboration: boolean;
+    merchandisingInterest: boolean;
+    autoQuoteContract: boolean;
+    noChargeRehearsals: boolean;
+    noChargeStyling: boolean;
+    noChargeSocialMedia: boolean;
+    techRiderFiles?: string;
+    hospitalityRiderFiles?: string;
+    isArtistManager: boolean;
+    managementType?: "personalManager" | "agency";
+    agencyDetails?: string;
+    isEventOrganizer: boolean;
+    organizerType?: "individual" | "agency" | "corporate" | "organisation";
+    organisationType?: string;
+    organisationName?: string;
+    organisationLocation?: string;
+    organisationRole?: "owner" | "staff";
+    organisationEmail?: string;
+    organisationWhatsApp?: string;
+    organisationGST?: string;
+    organisationSocialHandle?: string;
+};
+
 type RegistrationData = {
     screen1_1: Screen1_1Data;
     screen1_2: Screen1_2Data;
     screen2_1?: Screen2_1Data;
     screen2_2?: Screen2_2Data;
     screen2_3?: Screen2_3Data;
+    screen2_4?: Screen2_4Data;
+    screen2_5?: Screen2_5Data;
+    screen2_6?: Screen2_6Data;
+    screen2_7?: Screen2_7Data;
 };
 
 export default function RegistrationPage() {
-    const [currentScreen, setCurrentScreen] = useState<"1.1" | "1.2" | "2.1" | "2.2" | "2.3" | "complete">("1.1");
+    const [currentScreen, setCurrentScreen] = useState<"1.1" | "1.2" | "2.1" | "2.2" | "2.3" | "2.4" | "2.5" | "2.6" | "2.7" | "complete">("1.1");
     const [registrationData, setRegistrationData] = useState<RegistrationData | null>(null);
 
     const handleScreen1_1Complete = (data: Screen1_1Data) => {
@@ -106,6 +211,10 @@ export default function RegistrationPage() {
         setCurrentScreen("1.2");
     };
 
+    const handleScreen1_1Skip = () => {
+        setCurrentScreen("1.2");
+    };
+
     const handleScreen1_2Complete = (data: Screen1_2Data) => {
         setRegistrationData(prev => ({
             screen1_1: prev!.screen1_1,
@@ -120,12 +229,20 @@ export default function RegistrationPage() {
         }
     };
 
+    const handleScreen1_2Skip = () => {
+        setCurrentScreen("2.1");
+    };
+
     const handleScreen2_1Complete = (data: Screen2_1Data) => {
         setRegistrationData(prev => ({
             ...prev!,
             screen2_1: data
         }));
         setCurrentScreen("2.2");
+    };
+
+    const handleScreen2_1Skip = () => {
+        setCurrentScreen("2.6");
     };
 
     const handleScreen2_2Complete = (data: Screen2_2Data) => {
@@ -136,10 +253,62 @@ export default function RegistrationPage() {
         setCurrentScreen("2.3");
     };
 
+    const handleScreen2_2Skip = () => {
+        setCurrentScreen("2.6");
+    };
+
     const handleScreen2_3Complete = (data: Screen2_3Data) => {
         setRegistrationData(prev => ({
             ...prev!,
             screen2_3: data
+        }));
+        setCurrentScreen("2.4");
+    };
+
+    const handleScreen2_3Skip = () => {
+        setCurrentScreen("2.6");
+    };
+
+    const handleScreen2_4Complete = (data: Screen2_4Data) => {
+        setRegistrationData(prev => ({
+            ...prev!,
+            screen2_4: data
+        }));
+        setCurrentScreen("2.5");
+    };
+
+    const handleScreen2_4Skip = () => {
+        setCurrentScreen("2.5");
+    };
+
+    const handleScreen2_5Complete = (data: Screen2_5Data) => {
+        setRegistrationData(prev => ({
+            ...prev!,
+            screen2_5: data
+        }));
+        setCurrentScreen("2.6");
+    };
+
+    const handleScreen2_5Skip = () => {
+        setCurrentScreen("2.6");
+    };
+
+    const handleScreen2_6Complete = (data: Screen2_6Data) => {
+        setRegistrationData(prev => ({
+            ...prev!,
+            screen2_6: data
+        }));
+        setCurrentScreen("2.7");
+    };
+
+    const handleScreen2_6Skip = () => {
+        setCurrentScreen("2.7");
+    };
+
+    const handleScreen2_7Complete = (data: Screen2_7Data) => {
+        setRegistrationData(prev => ({
+            ...prev!,
+            screen2_7: data
         }));
         setCurrentScreen("complete");
 
@@ -149,8 +318,16 @@ export default function RegistrationPage() {
             ...registrationData?.screen1_2,
             ...registrationData?.screen2_1,
             ...registrationData?.screen2_2,
+            ...registrationData?.screen2_3,
+            ...registrationData?.screen2_4,
+            ...registrationData?.screen2_5,
+            ...registrationData?.screen2_6,
             ...data
         });
+    };
+
+    const handleScreen2_7Skip = () => {
+        setCurrentScreen("complete");
     };
 
     const handleBackToScreen1_1 = () => {
@@ -167,6 +344,22 @@ export default function RegistrationPage() {
 
     const handleBackToScreen2_2 = () => {
         setCurrentScreen("2.2");
+    };
+
+    const handleBackToScreen2_3 = () => {
+        setCurrentScreen("2.3");
+    };
+
+    const handleBackToScreen2_4 = () => {
+        setCurrentScreen("2.4");
+    };
+
+    const handleBackToScreen2_5 = () => {
+        setCurrentScreen("2.5");
+    };
+
+    const handleBackToScreen2_6 = () => {
+        setCurrentScreen("2.6");
     };
 
     if (currentScreen === "complete") {
@@ -198,6 +391,8 @@ export default function RegistrationPage() {
                                     <p><strong>Screen Name:</strong> {registrationData?.screen2_2?.screenName}</p>
                                     <p><strong>Star Value:</strong> {registrationData?.screen2_3?.starValue}</p>
                                     <p><strong>Years Performing:</strong> {registrationData?.screen2_3?.yearsPerforming}</p>
+                                    <p><strong>Act Title:</strong> {registrationData?.screen2_5?.actTitle}</p>
+                                    <p><strong>Travel Interest:</strong> {registrationData?.screen2_7?.travelInterest}</p>
                                 </>
                             )}
                         </div>
@@ -212,6 +407,7 @@ export default function RegistrationPage() {
             {currentScreen === "1.1" && (
                 <Screen1_1
                     onNext={handleScreen1_1Complete}
+                    onSkip={handleScreen1_1Skip}
                 />
             )}
 
@@ -219,6 +415,7 @@ export default function RegistrationPage() {
                 <Screen1_2
                     onNext={handleScreen1_2Complete}
                     onBack={handleBackToScreen1_1}
+                    onSkip={handleScreen1_2Skip}
                 />
             )}
 
@@ -226,6 +423,7 @@ export default function RegistrationPage() {
                 <Screen2_1
                     onNext={handleScreen2_1Complete}
                     onBack={handleBackToScreen1_2}
+                    onSkip={handleScreen2_1Skip}
                 />
             )}
 
@@ -233,6 +431,7 @@ export default function RegistrationPage() {
                 <Screen2_2
                     onNext={handleScreen2_2Complete}
                     onBack={handleBackToScreen2_1}
+                    onSkip={handleScreen2_2Skip}
                 />
             )}
 
@@ -240,6 +439,39 @@ export default function RegistrationPage() {
                 <Screen2_3
                     onNext={handleScreen2_3Complete}
                     onBack={handleBackToScreen2_2}
+                    onSkip={handleScreen2_3Skip}
+                />
+            )}
+
+            {currentScreen === "2.4" && (
+                <Screen2_4
+                    onNext={handleScreen2_4Complete}
+                    onBack={handleBackToScreen2_3}
+                    onSkip={handleScreen2_4Skip}
+                />
+            )}
+
+            {currentScreen === "2.5" && (
+                <Screen2_5
+                    onNext={handleScreen2_5Complete}
+                    onBack={handleBackToScreen2_4}
+                    onSkip={handleScreen2_5Skip}
+                />
+            )}
+
+            {currentScreen === "2.6" && (
+                <Screen2_6
+                    onNext={handleScreen2_6Complete}
+                    onBack={handleBackToScreen2_5}
+                    onSkip={handleScreen2_6Skip}
+                />
+            )}
+
+            {currentScreen === "2.7" && (
+                <Screen2_7
+                    onNext={handleScreen2_7Complete}
+                    onBack={handleBackToScreen2_6}
+                    onSkip={handleScreen2_7Skip}
                 />
             )}
         </div>

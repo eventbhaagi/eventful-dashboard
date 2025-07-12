@@ -36,9 +36,10 @@ type Screen1_2FormData = z.infer<typeof screen1_2Schema>;
 interface Screen1_2Props {
     onNext: (data: Screen1_2FormData) => void;
     onBack: () => void;
+    onSkip: () => void;
 }
 
-export default function Screen1_2({ onNext, onBack }: Screen1_2Props) {
+export default function Screen1_2({ onNext, onBack, onSkip }: Screen1_2Props) {
     const [isLoading, setIsLoading] = useState(false);
 
     const {
@@ -314,6 +315,15 @@ export default function Screen1_2({ onNext, onBack }: Screen1_2Props) {
                         className="flex-1"
                     >
                         Back to Screen 1.1
+                    </Button>
+
+                    <Button
+                        type="button"
+                        variant="outline"
+                        onClick={onSkip}
+                        className="flex-1"
+                    >
+                        Skip for Now
                     </Button>
 
                     <Button
