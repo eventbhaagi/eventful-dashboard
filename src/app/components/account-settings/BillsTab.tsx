@@ -21,7 +21,7 @@ const BillsTabs = () => {
                 <div className="flex flex-col gap-3 mt-3">
                   <div>
                     <div className="mb-2 block">
-                      <Label htmlFor="bnm" value="Business Name*" />
+                      <Label htmlFor="bnm" >Business Name</Label>
                     </div>
                     <TextInput
                       id="bnm"
@@ -33,7 +33,7 @@ const BillsTabs = () => {
                   </div>
                   <div>
                     <div className="mb-2 block">
-                      <Label htmlFor="banm" value="Business Address*" />
+                      <Label htmlFor="banm" >Business Address</Label>
                     </div>
                     <TextInput
                       id="banm"
@@ -44,7 +44,7 @@ const BillsTabs = () => {
                   </div>
                   <div>
                     <div className="mb-2 block">
-                      <Label htmlFor="fnm" value="First Name*" />
+                      <Label htmlFor="fnm" >First Name</Label>
                     </div>
                     <TextInput
                       id="fnm"
@@ -59,7 +59,7 @@ const BillsTabs = () => {
                 <div className="flex flex-col gap-3 mt-3">
                   <div>
                     <div className="mb-2 block">
-                      <Label htmlFor="bssector" value="Business Sector*" />
+                      <Label htmlFor="bssector" >Business Sector</Label>
                     </div>
                     <TextInput
                       id="bssector"
@@ -72,7 +72,7 @@ const BillsTabs = () => {
 
                   <div>
                     <div className="mb-2 block">
-                      <Label htmlFor="ct" value="Country*" />
+                      <Label htmlFor="ct" >Country</Label>
                     </div>
                     <TextInput
                       id="ct"
@@ -84,7 +84,7 @@ const BillsTabs = () => {
                   </div>
                   <div>
                     <div className="mb-2 block">
-                      <Label htmlFor="lnm" value="Last Name*" />
+                      <Label htmlFor="lnm" >Last Name</Label>
                     </div>
                     <TextInput
                       id="lnm"

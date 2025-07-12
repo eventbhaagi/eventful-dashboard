@@ -76,7 +76,7 @@ const NotificationTab = () => {
             </p>
             <div className="my-4">
               <div className="mb-2 block">
-                <Label htmlFor="eml" value="Email" />
+                <Label htmlFor="eml" >Email</Label>
               </div>
               <TextInput
                 id="eml"
