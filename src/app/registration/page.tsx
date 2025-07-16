@@ -10,6 +10,7 @@ import Screen2_4 from "@/components/registration/Screen2_4";
 import Screen2_5 from "@/components/registration/Screen2_5";
 import Screen2_6 from "@/components/registration/Screen2_6";
 import Screen2_7 from "@/components/registration/Screen2_7";
+import { Card } from "@/components/ui/card";
 
 type Screen1_1Data = {
     whatsappCountryCode: string;
@@ -365,19 +366,19 @@ export default function RegistrationPage() {
     if (currentScreen === "complete") {
         return (
             <div className="min-h-screen flex items-center justify-center bg-gray-50">
-                <div className="w-full max-w-2xl mx-auto p-6 text-center space-y-6">
+                <Card className="w-full max-w-2xl mx-auto p-6 text-center space-y-6 bg-white">
                     <div className="text-green-600">
                         <svg className="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
                     </div>
-                    <h1 className="text-3xl font-bold text-gray-900">Registration Complete!</h1>
+                    <h1 className="text-3xl font-bold text-black">Registration Complete!</h1>
                     <p className="text-gray-600">
                         Thank you for registering. We&apos;ve sent a confirmation to your email and WhatsApp.
                     </p>
                     <div className="bg-gray-100 p-4 rounded-lg text-left">
-                        <h3 className="font-semibold mb-2">Registration Summary:</h3>
-                        <div className="text-sm space-y-1">
+                        <h3 className="font-semibold mb-2 text-black">Registration Summary:</h3>
+                        <div className="text-sm space-y-1 text-black">
                             <p><strong>Name:</strong> {registrationData?.screen1_2.firstName} {registrationData?.screen1_2.lastName}</p>
                             <p><strong>WhatsApp:</strong> {registrationData?.screen1_1.whatsappCountryCode} {registrationData?.screen1_1.whatsappNumber}</p>
                             <p><strong>Personal Email:</strong> {registrationData?.screen1_1.personalEmail}</p>
@@ -397,7 +398,7 @@ export default function RegistrationPage() {
                             )}
                         </div>
                     </div>
-                </div>
+                </Card>
             </div>
         );
     }

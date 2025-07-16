@@ -10,6 +10,8 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
+import { Card } from "../ui/card";
+import { CardHeaderSection } from "../ui/cardHeaderSection";
 
 // Validation schema for Screen 2.7
 const screen2_7Schema = z.object({
@@ -129,19 +131,16 @@ export default function Screen2_7({ onNext, onBack, onSkip }: Screen2_7Props) {
     };
 
     return (
-        <div className="w-full max-w-4xl mx-auto p-6 space-y-8">
-            <div className="text-center space-y-2">
-                <h1 className="text-3xl font-bold">Performing Artist Registration</h1>
-                <p className="text-gray-600">Screen 2.7 - Additional Preferences & Requirements</p>
-            </div>
-
+        <Card className="w-full max-w-4xl mx-auto p-6 space-y-8 bg-white">
+            <CardHeaderSection title={"Performing Artist Registration"} description={"Additional Preferences & Requirements"}/>
+           
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
                 {/* Travel Preferences */}
                 <div className="space-y-4">
-                    <h2 className="text-xl font-semibold">Travel Preferences</h2>
+                    <h2 className="text-xl font-semibold text-black">Travel Preferences</h2>
 
                     <div>
-                        <Label htmlFor="travelInterest">Are you interested to Travel for your LIVE Performances?</Label>
+                        <Label htmlFor="travelInterest" className="text-black font-medium">Are you interested to Travel for your LIVE Performances?</Label>
                         <Select
                             value={travelInterest}
                             onValueChange={(value) => setValue("travelInterest", value as "domestic" | "international" | "notInterested")}
@@ -159,7 +158,7 @@ export default function Screen2_7({ onNext, onBack, onSkip }: Screen2_7Props) {
 
                     {travelInterest === "international" && (
                         <div className="space-y-4">
-                            <Label>Countries you have already performed LIVE?</Label>
+                            <Label className="text-black ">Countries you have already performed LIVE?</Label>
                             <div className="flex flex-wrap gap-2">
                                 {(watch("performedCountries") || []).map((country) => (
                                     <span
@@ -184,7 +183,7 @@ export default function Screen2_7({ onNext, onBack, onSkip }: Screen2_7Props) {
                                         type="button"
                                         onClick={() => handleCountryAdd(country)}
                                         disabled={(watch("performedCountries") || []).includes(country)}
-                                        className="px-3 py-2 text-sm border rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="px-3 py-2 text-black text-sm border rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
                                         {country}
                                     </button>
@@ -196,7 +195,7 @@ export default function Screen2_7({ onNext, onBack, onSkip }: Screen2_7Props) {
 
                 {/* Collaboration Preferences */}
                 <div className="space-y-4">
-                    <h2 className="text-xl font-semibold">Collaboration & Business Preferences</h2>
+                    <h2 className="text-xl font-semibold text-black">Collaboration & Business Preferences</h2>
 
                     <div className="space-y-4">
                         <div className="flex items-center space-x-2">
@@ -205,7 +204,7 @@ export default function Screen2_7({ onNext, onBack, onSkip }: Screen2_7Props) {
                                 checked={watch("revenueShareCollab")}
                                 onCheckedChange={(checked) => setValue("revenueShareCollab", checked as boolean)}
                             />
-                            <Label htmlFor="revenueShareCollab">Are you interested in Revenue Share Collab Deals, for Ticketed Events?</Label>
+                            <Label htmlFor="revenueShareCollab" className="text-black">Are you interested in Revenue Share Collab Deals, for Ticketed Events?</Label>
                         </div>
 
                         <div className="flex items-center space-x-2">
@@ -214,7 +213,7 @@ export default function Screen2_7({ onNext, onBack, onSkip }: Screen2_7Props) {
                                 checked={watch("artistCollaboration")}
                                 onCheckedChange={(checked) => setValue("artistCollaboration", checked as boolean)}
                             />
-                            <Label htmlFor="artistCollaboration">Are you interested in Collaborating with other Artists Online/Offline?</Label>
+                            <Label htmlFor="artistCollaboration" className="text-black">Are you interested in Collaborating with other Artists Online/Offline?</Label>
                         </div>
 
                         <div className="flex items-center space-x-2">
@@ -223,7 +222,7 @@ export default function Screen2_7({ onNext, onBack, onSkip }: Screen2_7Props) {
                                 checked={watch("merchandisingInterest")}
                                 onCheckedChange={(checked) => setValue("merchandisingInterest", checked as boolean)}
                             />
-                            <Label htmlFor="merchandisingInterest">Are you interested in exploring other revenue streams like Merchandising?</Label>
+                            <Label htmlFor="merchandisingInterest" className="text-black">Are you interested in exploring other revenue streams like Merchandising?</Label>
                         </div>
 
                         <div className="flex items-center space-x-2">
@@ -232,14 +231,14 @@ export default function Screen2_7({ onNext, onBack, onSkip }: Screen2_7Props) {
                                 checked={watch("autoQuoteContract")}
                                 onCheckedChange={(checked) => setValue("autoQuoteContract", checked as boolean)}
                             />
-                            <Label htmlFor="autoQuoteContract">Would you be interested to contract with Artist RSVP to Auto-Quote?</Label>
+                            <Label htmlFor="autoQuoteContract" className="text-black">Would you be interested to contract with Artist RSVP to Auto-Quote?</Label>
                         </div>
                     </div>
                 </div>
 
                 {/* Service Preferences */}
                 <div className="space-y-4">
-                    <h2 className="text-xl font-semibold">Service Preferences</h2>
+                    <h2 className="text-xl font-semibold text-black">Service Preferences</h2>
 
                     <div className="space-y-4">
                         <div className="flex items-center space-x-2">
@@ -248,7 +247,7 @@ export default function Screen2_7({ onNext, onBack, onSkip }: Screen2_7Props) {
                                 checked={watch("noChargeRehearsals")}
                                 onCheckedChange={(checked) => setValue("noChargeRehearsals", checked as boolean)}
                             />
-                            <Label htmlFor="noChargeRehearsals">Clients won&apos;t be charged for your Rehearsals / Fittings / Tech Walk / Sound Check?</Label>
+                            <Label htmlFor="noChargeRehearsals" className="text-black">Clients won&apos;t be charged for your Rehearsals / Fittings / Tech Walk / Sound Check?</Label>
                         </div>
 
                         <div className="flex items-center space-x-2">
@@ -257,7 +256,7 @@ export default function Screen2_7({ onNext, onBack, onSkip }: Screen2_7Props) {
                                 checked={watch("noChargeStyling")}
                                 onCheckedChange={(checked) => setValue("noChargeStyling", checked as boolean)}
                             />
-                            <Label htmlFor="noChargeStyling">Clients won&apos;t be charged for your MUA / Hair Stylist / Fashion Stylist, as Add-On?</Label>
+                            <Label htmlFor="noChargeStyling" className="text-black">Clients won&apos;t be charged for your MUA / Hair Stylist / Fashion Stylist, as Add-On?</Label>
                         </div>
 
                         <div className="flex items-center space-x-2">
@@ -266,19 +265,19 @@ export default function Screen2_7({ onNext, onBack, onSkip }: Screen2_7Props) {
                                 checked={watch("noChargeSocialMedia")}
                                 onCheckedChange={(checked) => setValue("noChargeSocialMedia", checked as boolean)}
                             />
-                            <Label htmlFor="noChargeSocialMedia">Clients won&apos;t be charged for One PreEvent and One PostEvent Social Media Post?</Label>
+                            <Label htmlFor="noChargeSocialMedia" className="text-black">Clients won&apos;t be charged for One PreEvent and One PostEvent Social Media Post?</Label>
                         </div>
                     </div>
                 </div>
 
                 {/* File Uploads */}
                 <div className="space-y-4">
-                    <h2 className="text-xl font-semibold">Technical Requirements</h2>
+                    <h2 className="text-xl font-semibold text-black">Technical Requirements</h2>
 
                     <div className="space-y-4">
                         <div>
-                            <Label htmlFor="techRiderFiles">Please upload your Tech Rider with Staging Requirements</Label>
-                            <Input
+                            <Label htmlFor="techRiderFiles" className="text-black font-medium">Please upload your Tech Rider with Staging Requirements</Label>
+                            <Input 
                                 id="techRiderFiles"
                                 type="file"
                                 multiple
@@ -289,7 +288,7 @@ export default function Screen2_7({ onNext, onBack, onSkip }: Screen2_7Props) {
                         </div>
 
                         <div>
-                            <Label htmlFor="hospitalityRiderFiles">Please upload your Hospitality Rider with TBL Requirements</Label>
+                            <Label htmlFor="hospitalityRiderFiles" className="text-black font-medium">Please upload your Hospitality Rider with TBL Requirements</Label>
                             <Input
                                 id="hospitalityRiderFiles"
                                 type="file"
@@ -310,7 +309,7 @@ export default function Screen2_7({ onNext, onBack, onSkip }: Screen2_7Props) {
                             checked={isArtistManager}
                             onCheckedChange={(checked) => setValue("isArtistManager", checked as boolean)}
                         />
-                        <Label htmlFor="isArtistManager" className="text-lg font-medium">
+                        <Label htmlFor="isArtistManager" className="text-lg font-medium text-black">
                             I&apos;m an Artist Manager
                         </Label>
                     </div>
@@ -320,10 +319,10 @@ export default function Screen2_7({ onNext, onBack, onSkip }: Screen2_7Props) {
 
                     {isArtistManager && (
                         <div className="space-y-4 p-4 border rounded-lg">
-                            <h3 className="font-semibold">Artist Management Details</h3>
+                            <h3 className="font-semibold text-black">Artist Management Details</h3>
 
                             <div>
-                                <Label htmlFor="managementType">How do you Manage Artists?</Label>
+                                <Label htmlFor="managementType" className="text-black">How do you Manage Artists?</Label>
                                 <Select
                                     value={watch("managementType") || "personalManager"}
                                     onValueChange={(value) => setValue("managementType", value as "personalManager" | "agency")}
@@ -339,7 +338,7 @@ export default function Screen2_7({ onNext, onBack, onSkip }: Screen2_7Props) {
                             </div>
 
                             <div>
-                                <Label htmlFor="agencyDetails">Please give details of your Agency</Label>
+                                <Label htmlFor="agencyDetails" className="text-black">Please give details of your Agency</Label>
                                 <Textarea
                                     id="agencyDetails"
                                     placeholder="Artist Management Agency Name - Your Role [Owner-Partner / Staff-Member] - City, Country - Email Address - WhatsApp Number"
@@ -362,7 +361,7 @@ export default function Screen2_7({ onNext, onBack, onSkip }: Screen2_7Props) {
                             checked={isEventOrganizer}
                             onCheckedChange={(checked) => setValue("isEventOrganizer", checked as boolean)}
                         />
-                        <Label htmlFor="isEventOrganizer" className="text-lg font-medium">
+                        <Label htmlFor="isEventOrganizer" className="text-lg font-medium text-black">
                             I Organise Events (Event Organiser)
                         </Label>
                     </div>
@@ -372,10 +371,10 @@ export default function Screen2_7({ onNext, onBack, onSkip }: Screen2_7Props) {
 
                     {isEventOrganizer && (
                         <div className="space-y-4 p-4 border rounded-lg">
-                            <h3 className="font-semibold">Event Organization Details</h3>
+                            <h3 className="font-semibold text-black">Event Organization Details</h3>
 
                             <div>
-                                <Label htmlFor="organizerType">How do you Organise Events?</Label>
+                                <Label htmlFor="organizerType" className="text-black font-medium">How do you Organise Events?</Label>
                                 <Select
                                     value={watch("organizerType") || "individual"}
                                     onValueChange={(value) => setValue("organizerType", value as "individual" | "agency" | "corporate" | "organisation")}
@@ -528,6 +527,6 @@ export default function Screen2_7({ onNext, onBack, onSkip }: Screen2_7Props) {
                     </Button>
                 </div>
             </form>
-        </div>
+        </Card>
     );
 } 

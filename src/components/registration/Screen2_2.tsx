@@ -8,6 +8,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Card } from "../ui/card";
+import { CardHeaderSection } from "../ui/cardHeaderSection";
+import { LabeledInputField } from "../ui/lableInputfield";
 
 // Validation schema for Screen 2.2
 const screen2_2Schema = z.object({
@@ -87,17 +90,21 @@ export default function Screen2_2({ onNext, onBack, onSkip }: Screen2_2Props) {
     };
 
     return (
-        <div className="w-full max-w-2xl mx-auto p-6 space-y-8">
-            <div className="text-center space-y-2">
+        <Card className="w-full max-w-2xl mx-auto p-6 space-y-8 bg-white">
+              <CardHeaderSection
+        title="Performing Artist Registration"
+        description="Artist Identification"
+      />
+            {/* <div className="text-center space-y-2">
                 <h1 className="text-3xl font-bold">Performing Artist Registration</h1>
                 <p className="text-gray-600">Screen 2.2 - Artist Identification</p>
-            </div>
+            </div> */}
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 {/* Scraping Section */}
                 <div className="space-y-4">
                     <div className="flex items-center space-x-2">
-                        <h2 className="text-xl font-semibold">Help us if we have identified you correctly?</h2>
+                        <h2 className="text-xl font-semibold text-black">Help us if we have identified you correctly?</h2>
                     </div>
                     <p className="text-sm text-gray-600">
                         System should initiate Scrappers to fetch some information about this Artist.
@@ -114,7 +121,7 @@ export default function Screen2_2({ onNext, onBack, onSkip }: Screen2_2Props) {
                     </Button>
 
                     {scrapedInfo && (
-                        <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+                        <div className="p-4 bg-green-50 border border-green-200 rounded-lg shadow-lg">
                             <h3 className="font-semibold text-green-800 mb-2">✓ Data Successfully Scraped</h3>
                             <p className="text-sm text-green-700">
                                 Found artist information from your social media profiles. You can edit the auto-filled data below.
@@ -125,12 +132,20 @@ export default function Screen2_2({ onNext, onBack, onSkip }: Screen2_2Props) {
 
                 {/* Artist Information Section */}
                 <div className="space-y-4">
-                    <h3 className="text-lg font-semibold">Artist Information</h3>
+                    <h3 className="text-lg font-semibold text-black">Artist Information</h3>
                     <p className="text-sm text-gray-600">
                         Auto-Filled - Editable Field
                     </p>
-
-                    <div>
+                    <LabeledInputField
+              id="screenName"
+              label="Your Screen Name"
+              placeholder="Enter your screen name"
+              register={register("screenName")}
+              error={errors.screenName}
+            //   onBlur={(value) => fetchSocialData("Facebook", value)}
+            />
+                    {/* <div>
+               
                         <Label htmlFor="screenName">Your Screen Name</Label>
                         <Input
                             id="screenName"
@@ -140,10 +155,17 @@ export default function Screen2_2({ onNext, onBack, onSkip }: Screen2_2Props) {
                         {errors.screenName && (
                             <p className="text-red-500 text-sm mt-1">{errors.screenName.message}</p>
                         )}
-                    </div>
-
+                    </div> */}
+       <LabeledInputField
+              id="screenName"
+              label="Your Profile Picture"
+              placeholder="Enter your screen name"
+              register={register("screenName")}
+              error={errors.screenName}
+            //   onBlur={(value) => fetchSocialData("Facebook", value)}
+            />
                     <div>
-                        <Label htmlFor="profilePicture">Your Profile Picture</Label>
+                        <Label htmlFor="profilePicture" className="text-black font-medium">Your Profile Picture</Label>
                         <Input
                             id="profilePicture"
                             type="url"
@@ -159,7 +181,7 @@ export default function Screen2_2({ onNext, onBack, onSkip }: Screen2_2Props) {
                     </div>
 
                     <div>
-                        <Label htmlFor="profileBios">Your Profile Bios</Label>
+                        <Label htmlFor="profileBios" className="text-black font-medium">Your Profile Bios</Label>
                         <Textarea
                             id="profileBios"
                             placeholder="Enter your professional bios"
@@ -175,7 +197,7 @@ export default function Screen2_2({ onNext, onBack, onSkip }: Screen2_2Props) {
                     </div>
 
                     <div>
-                        <Label htmlFor="scrapedData">Additional Information from Scrapers</Label>
+                        <Label htmlFor="scrapedData" className="text-black font-medium">Additional Information from Scrapers</Label>
                         <Textarea
                             id="scrapedData"
                             placeholder="Additional information found from social platforms"
@@ -218,6 +240,6 @@ export default function Screen2_2({ onNext, onBack, onSkip }: Screen2_2Props) {
                     </Button>
                 </div>
             </form>
-        </div>
+        </Card>
     );
 } 
