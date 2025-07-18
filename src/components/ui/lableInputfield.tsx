@@ -9,7 +9,7 @@ interface LabeledInputWithValidationProps {
   label: string;
   placeholder: string;
   type?: string;
-  register: UseFormRegisterReturn;
+  register?: UseFormRegisterReturn;
   validationResult?: boolean | null;
   onBlur?: (id: string, value: string) => void;
   error?: FieldError;
@@ -27,7 +27,7 @@ export const LabeledInputField = ({
 }: LabeledInputWithValidationProps) => {
   return (
     <div key={id} className="space-y-2">
-      <Label htmlFor={id} className="text-black font-medium">{label}</Label>
+      <Label htmlFor={id} className="text-black font-medium text-base">{label}</Label>
       <Input
         id={id}
         type={type}
